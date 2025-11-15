@@ -1,134 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="momentkh/moment.min.js"></script>
+    <script src="momentkh/km.min.js"></script>
+    <script src="momentkh/constant.js"></script>
+    <script src="momentkh/locale/km.js"></script>
+    <script src="momentkh/getSoriyatraLerngSak.js"></script>
+    <script src="momentkh/momentkh.js"></script>
+
+    <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+    <style>
+        body {
+            font-family: 'Khmer OS Siemreap';
+            font-size: large;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Khmer OS Moul Light';
+            padding: 1%;
+            margin-left: 5%;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Exercise</h1>
-    <p>The price of Programming</p>
-    <input type="checkbox" value="2000" name="myChoice">$2000 for Java Programming<br>
-    <input type="checkbox" value="1500" name="myChoice">$1500 for C Programming<br>
-    <input type="checkbox" value="1000" name="myChoice">$1000 for CSS Progrmming <br>
-    <input type="checkbox" value="500" name="myChoice">$500 for HTML Programming<br><br>
-    <input type="button" value="Total Price" onclick="fnDataCalculation()">
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="icons/Custom-Icon-Design-Pretty-Office-7-Calendar.48.png" alt="Logo" width="30" height="24"
+                    class="d-inline-block align-text-top">
+                Calendar
+            </a>
+        </div>
+    </nav>
+    <br>
+    <h1>ប្រតិទិនខ្មែរ-Khmer Calendar</h1>
+    <h2><img src="icons/calendar-heart-fill.svg" alt="Today icons" width="30">កាលបរិច្ឆេទថ្ងៃនេះ</h2>
+    <center>
+        <script>
+            var moment = momentkh(moment);
+            // var today_date = moment('2025/11/3');
+            var today = moment();
+            var today_date = today.toKhDate();
+            var today_datekh = today.locale('km').format('ថ្ងៃទីD ខែMMMM ឆ្នាំYYYY');
+            document.writeln("<p>" + today_date + "</p>");
+            document.writeln("<p>" + today_datekh + "</p>");
+        </script>
+    </center>
+
+    <h2><img src="icons/calendar-range-fill.svg" alt="Today icons" width="30">បម្លែងកាលបរិច្ឆេទ</h2>
+    <center>
+        <div class="col-sm-3">
+            <form class="form-control">
+                <div class="d-flex gap-2">
+                    <select class="form-select w-auto"  id="day">
+                        <option selected>Day</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <select class="form-select w-auto" id="month">
+                        <option selected>Month</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <select class="form-select w-auto" id="year">
+                        <option selected>Year</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                    </select>
+                    <button id="btnChange" type="button" class="btn btn-primary">Change</button>
+                </div>
+            </form>
+        </div>
+    </center>
     <script>
-        function fnDataCalculation(){
-            var sum = 0;
-            var obj = document.getElementsByName("myChoice");
-            for(var i=0; i<obj.length; i++){
-                if(!obj[i].checked)continue;
-                sum += parseFloat(obj[i].value);
+        document.getElementById("btnChange").addEventListener("click", function () {
+            var day = document.getElementById("day").value;
+            var month = document.getElementById("month").value;
+            var year = document.getElementById("year").value;
+
+            if (day === "Day" || month === "Month" || year === "Year") {
+                alert("Please select Day, Month, and Year.");
+                return;
             }
-            alert("Total Price: $" + sum);
-        }
-    </script>
 
-    <h2>Empty Array</h2>
-    <script>
-        var arrStd = new Array();
-        var arrColors = [];
-        
-        var templekh = new Array();
-        templekh[0] = "អង្គរវត្ត";
-        templekh[1] = "បាយ័ន";
-        templekh[2] = "តាព្រហ្ម";
-
-        var templeen = ["Angkor Wat", "Bayon", "Ta Prohm"];
-        var car = new Array("BMW", "Audi", "Toyota");
-        //example arrays
-        //empty array
-        var arrEmpty = [];
-        //number array
-        var arrNumber = [10, 20, 30, 40, 50];
-        //string array
-        var arrString = ["apple", "banana", "cherry"];
-        //mixed array
-        var arrMixed = [100, "Hello", true, 45.67];
-        console.log(arrString.length);
-        document.write("Length of arrEmpty: " + arrEmpty.length + "<br>");
-        document.write("Length of arrNumber: " + arrNumber.length + "<br>");
-        document.write("Length of arrString: " + arrString.length + "<br>");
-        document.write("Length of arrMixed: " + arrMixed.length + "<br>");
+            var selectedDate = moment(year + '/' + month + '/' + day);
+            var khmerDate = selectedDate.toKhDate();
+            var khmerDateKh = selectedDate.locale('km').format('ថ្ងៃទីD ខែMMMM ឆ្នាំYYYY');
+            document.getElementById("convertDate").innerText = khmerDate;
+            document.getElementById("convertDatekh").innerText = khmerDateKh;
+           
+        });
     </script>
-    <h2>Specitfic number item in array</h2>
-    <script>
-        var books= new Array(6);
-        books[0] = "JavaScript";
-        books[1] = "HTML5";
-        books[2] = "CSS";
-        for(var i in books){
-            document.write("Books[" + i + "]: " + books[i] + "<br>");
-        }
-       
-    </script>
-
-    <h2>Specific item in array</h2>
-    <script>
-        var today = new Date();
-        document.write("Today is: " + today + "<br>");
-        var day = today.getDay();
-        document.writeln("Day: " + day + "<br>");
-        var month = today.getMonth();
-        document.writeln("Month: " + month + "<br>");
-        var year = today.getFullYear();
-        document.writeln("Year: " + year + "<br>");
-        var arrDays = ["Sunday", "Monday", "Tuesday", "Wednesday", 
-        "Thursday", "Friday", "Saturday"];
-        document.writeln("Today is: " + arrDays[day] + "<br>");
-        var arrMonths = ["January", "February", "March", "April", 
-        "May", "June", "July", "August", "September", "October", 
-        "November", "December"];
-        document.writeln("This month is: " + arrMonths[month] + "<br>");
-        document.writeln("<h4>");
-        document.writeln("Today is " + arrMonths[month] + " " + 
-        arrDays[day] + " " + today.getDate() +", " + year);
-        document.writeln("</h4>");
-    </script>
-    <h3>Array Method</h3>
-    <script>
-        // Concatenate two arrays
-        var arrSubject = ["Java","JavaScript","HTML5","CSS3"];
-        var arrNewSubject=["Python","PHP"];
-        var arrConcat=arrSubject.concat(arrNewSubject);
-        document.writeln("arrConcat: " + arrConcat + "<br>");
-        //indexOf() method
-        var index=arrConcat.indexOf("PHP");
-        document.writeln("Index of PHP: " + index + "<br>");
-        //find method
-        var arrNumber=[10,20,30,40,50,60];        
-        document.writeln("Find ArrNumber: " + 
-        arrNumber.find(element => element > 20) + "<br>");
-        //findIndex method
-        document.writeln("Find Index ArrNumber: " +
-        arrNumber.findIndex(element => element > 40) + "<br>");
-        //forEach method
-        var numArray=[2,4,6,8,10];
-        function computeSquare(value){
-            document.writeln("Square of " + value + " is: " + (value*value) + "<br>");
-        }
-        numArray.forEach(computeSquare);
-        //includes method
-        var hasPHP=arrConcat.includes("C#");
-        document.writeln("Has C#: " + hasPHP + "<br>");
-        //unshift method
-        arrSubject.unshift("C#","C++");
-        document.writeln("After unshift: " + arrSubject + "<br>");
-        //sort method
-        var provinces=["Kandal","Phnom Penh","Siem Reap","Battambang","Kep"];
-        document.writeln("<b>Before sort:</b><br>");
-        for(var i in provinces){
-            document.writeln(provinces[i] + "<br>");
-        }
-        provinces.sort();
-        document.writeln("<b>After sort:</b><br>");
-        for(var i in provinces){
-            document.writeln(provinces[i] + "<br>");
-        }
-        //slice method
-        var slicedProvinces=provinces.slice(0,3);
-        document.writeln("Sliced Provinces: " + slicedProvinces + "<br>");
-    </script>
-</body>
+    <center>
+        <br>
+        <p id="convertDate"></p>
+        <p id="convertDatekh"></p>
+    </center>
+    </body>
 </html>
