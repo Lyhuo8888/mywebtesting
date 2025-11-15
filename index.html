@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Exercise</h1>
+    <p>The price of Programming</p>
+    <input type="checkbox" value="2000" name="myChoice">$2000 for Java Programming<br>
+    <input type="checkbox" value="1500" name="myChoice">$1500 for C Programming<br>
+    <input type="checkbox" value="1000" name="myChoice">$1000 for CSS Progrmming <br>
+    <input type="checkbox" value="500" name="myChoice">$500 for HTML Programming<br><br>
+    <input type="button" value="Total Price" onclick="fnDataCalculation()">
+    <script>
+        function fnDataCalculation(){
+            var sum = 0;
+            var obj = document.getElementsByName("myChoice");
+            for(var i=0; i<obj.length; i++){
+                if(!obj[i].checked)continue;
+                sum += parseFloat(obj[i].value);
+            }
+            alert("Total Price: $" + sum);
+        }
+    </script>
+
+    <h2>Empty Array</h2>
+    <script>
+        var arrStd = new Array();
+        var arrColors = [];
+        
+        var templekh = new Array();
+        templekh[0] = "អង្គរវត្ត";
+        templekh[1] = "បាយ័ន";
+        templekh[2] = "តាព្រហ្ម";
+
+        var templeen = ["Angkor Wat", "Bayon", "Ta Prohm"];
+        var car = new Array("BMW", "Audi", "Toyota");
+        //example arrays
+        //empty array
+        var arrEmpty = [];
+        //number array
+        var arrNumber = [10, 20, 30, 40, 50];
+        //string array
+        var arrString = ["apple", "banana", "cherry"];
+        //mixed array
+        var arrMixed = [100, "Hello", true, 45.67];
+        console.log(arrString.length);
+        document.write("Length of arrEmpty: " + arrEmpty.length + "<br>");
+        document.write("Length of arrNumber: " + arrNumber.length + "<br>");
+        document.write("Length of arrString: " + arrString.length + "<br>");
+        document.write("Length of arrMixed: " + arrMixed.length + "<br>");
+    </script>
+    <h2>Specitfic number item in array</h2>
+    <script>
+        var books= new Array(6);
+        books[0] = "JavaScript";
+        books[1] = "HTML5";
+        books[2] = "CSS";
+        for(var i in books){
+            document.write("Books[" + i + "]: " + books[i] + "<br>");
+        }
+       
+    </script>
+
+    <h2>Specific item in array</h2>
+    <script>
+        var today = new Date();
+        document.write("Today is: " + today + "<br>");
+        var day = today.getDay();
+        document.writeln("Day: " + day + "<br>");
+        var month = today.getMonth();
+        document.writeln("Month: " + month + "<br>");
+        var year = today.getFullYear();
+        document.writeln("Year: " + year + "<br>");
+        var arrDays = ["Sunday", "Monday", "Tuesday", "Wednesday", 
+        "Thursday", "Friday", "Saturday"];
+        document.writeln("Today is: " + arrDays[day] + "<br>");
+        var arrMonths = ["January", "February", "March", "April", 
+        "May", "June", "July", "August", "September", "October", 
+        "November", "December"];
+        document.writeln("This month is: " + arrMonths[month] + "<br>");
+        document.writeln("<h4>");
+        document.writeln("Today is " + arrMonths[month] + " " + 
+        arrDays[day] + " " + today.getDate() +", " + year);
+        document.writeln("</h4>");
+    </script>
+    <h3>Array Method</h3>
+    <script>
+        // Concatenate two arrays
+        var arrSubject = ["Java","JavaScript","HTML5","CSS3"];
+        var arrNewSubject=["Python","PHP"];
+        var arrConcat=arrSubject.concat(arrNewSubject);
+        document.writeln("arrConcat: " + arrConcat + "<br>");
+        //indexOf() method
+        var index=arrConcat.indexOf("PHP");
+        document.writeln("Index of PHP: " + index + "<br>");
+        //find method
+        var arrNumber=[10,20,30,40,50,60];        
+        document.writeln("Find ArrNumber: " + 
+        arrNumber.find(element => element > 20) + "<br>");
+        //findIndex method
+        document.writeln("Find Index ArrNumber: " +
+        arrNumber.findIndex(element => element > 40) + "<br>");
+        //forEach method
+        var numArray=[2,4,6,8,10];
+        function computeSquare(value){
+            document.writeln("Square of " + value + " is: " + (value*value) + "<br>");
+        }
+        numArray.forEach(computeSquare);
+        //includes method
+        var hasPHP=arrConcat.includes("C#");
+        document.writeln("Has C#: " + hasPHP + "<br>");
+        //unshift method
+        arrSubject.unshift("C#","C++");
+        document.writeln("After unshift: " + arrSubject + "<br>");
+        //sort method
+        var provinces=["Kandal","Phnom Penh","Siem Reap","Battambang","Kep"];
+        document.writeln("<b>Before sort:</b><br>");
+        for(var i in provinces){
+            document.writeln(provinces[i] + "<br>");
+        }
+        provinces.sort();
+        document.writeln("<b>After sort:</b><br>");
+        for(var i in provinces){
+            document.writeln(provinces[i] + "<br>");
+        }
+        //slice method
+        var slicedProvinces=provinces.slice(0,3);
+        document.writeln("Sliced Provinces: " + slicedProvinces + "<br>");
+    </script>
+</body>
+</html>
